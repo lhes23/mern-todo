@@ -4,11 +4,6 @@ import { createTodo, updateTodo } from "../api";
 const TodoForm = ({ currentId, todos, setCurrentId }) => {
   const [todo, setTodo] = useState({ title: "", content: "" });
 
-  const clear = () => {
-    setCurrentId(0);
-    setTodo({ title: "", content: "" });
-  };
-
   const formSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -17,7 +12,8 @@ const TodoForm = ({ currentId, todos, setCurrentId }) => {
     } else {
       await createTodo(todo);
     }
-    clear();
+    setCurrentId(0);
+    setTodo({ title: "", content: "" });
   };
 
   useEffect(() => {

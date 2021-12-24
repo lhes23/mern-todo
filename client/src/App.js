@@ -20,7 +20,8 @@ function App() {
 
   return (
     <div className="container">
-      <h1>MERN Project</h1>
+      <h1>Todo Project using MERN</h1>
+      <h3>(MongoDB, Express, React, Node)</h3>
       <TodoForm
         currentId={currentId}
         todos={todos}
