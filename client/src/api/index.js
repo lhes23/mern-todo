@@ -29,7 +29,7 @@ export const deleteTodo = async (id) => {
 
 export const updateTodo = async (id, newUpdatedTodo) => {
   try {
-    await axios.patch(`${url}/update/${id}`, newUpdatedTodo);
+    await axios.put(`${url}/update/${id}`, newUpdatedTodo);
   } catch (error) {
     console.log(error);
   }

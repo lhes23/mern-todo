@@ -1,12 +1,31 @@
-import React from "react";
-import { createTodo } from "../api";
+import React, { useEffect, useState } from "react";
+import { createTodo, updateTodo } from "../api";
 
-const TodoForm = ({ todo, setTodo }) => {
-  const formSubmitHandler = async (e) => {
-    e.preventDefault();
-    await createTodo(todo);
+const TodoForm = ({ currentId, todos, setCurrentId }) => {
+  const [todo, setTodo] = useState({ title: "", content: "" });
+
+  const clear = () => {
+    setCurrentId(0);
     setTodo({ title: "", content: "" });
   };
+
+  const formSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    if (currentId !== 0) {
+      await updateTodo(currentId, todo);
+    } else {
+      await createTodo(todo);
+    }
+    clear();
+  };
+
+  useEffect(() => {
+    if (currentId !== 0) {
+      const currentTodo = todos.find((todo) => todo._id === currentId);
+      setTodo(currentTodo);
+    }
+  }, [currentId]);
 
   return (
     <div className="row">
